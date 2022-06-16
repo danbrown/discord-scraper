@@ -439,19 +439,19 @@ class DiscordScraper(object):
                         for embed in message['embeds']:
 
                             # Determine if there are any embedded images.
-                            if self.types['images'] and embed['type'] in ['image', 'gifv']:
+                            if self.types['images']:
 
                                 # Get the URL for our content.
-                                url = embed['url']
+                                url = embed['image']['proxy_url']
                                 
                                 # Begin downloading this file if so.
                                 self.startDownloading(url, self.location)
 
                             # Determine if there are any embedded videos.
-                            if self.types['videos'] and embed['type'] == 'video':
+                            if self.types['videos']:
 
                                 # Get the URL for our content.
-                                url = embed['url']
+                                url = embed['video']['proxy_url']
 
                                 # Begin downloading this file if so.
                                 self.startDownloading(url, self.location)
