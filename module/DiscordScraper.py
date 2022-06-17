@@ -185,7 +185,6 @@ class DiscordScraper(object):
         self.guildname = None
         self.channelname = None
         self.location = None
-        self.index = -1
 
         # Halt the script if there are no direct messages or guilds to scrape, since it would be useless to run this script without any data to scrape.
         if len(config.directs) == 0 and len(config.guilds) == 0:
@@ -372,7 +371,7 @@ class DiscordScraper(object):
         
         # Generate a file name from the url parts.
         filename_head = urlparts[-2]
-        filename_foot = '{0}-{1}'.format(self.index, urlparts[-1])
+        filename_foot = urlparts[-1]
 
         # Generate a file name from the url parts.
         filename = DiscordScraper.getSafeName('{0}_{1}'.format(filename_head, filename_foot)) if self.sanitizeFileNames else '{0}_{1}'.format(filename_head, filename_foot)
@@ -410,9 +409,6 @@ class DiscordScraper(object):
                     # Iterate through each message one-by-one.
                     for message in messages:
                         
-                        # Increment the message index number.
-                        self.index += 1
-
                         # Iterate through all of the attachments to check them one-by-one.
                         for attachment in message['attachments']:
 
