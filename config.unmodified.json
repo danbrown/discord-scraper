@@ -23,9 +23,9 @@
 
   "types": {
     "images": true,
-    "videos": true,
-    "files": true,
-    "text": true
+    "videos": false,
+    "files": false,
+    "text": false
   },
 
   "directs": {

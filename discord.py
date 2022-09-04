@@ -193,25 +193,24 @@ def start(scraper, guild, channel, day=None):
 # Create a variable that references the Discord Scraper class.
 discordscraper = DiscordScraper(outsideToken=TOKEN)
 
-testguild = "guild1"
+guild = "guild1"
 testdirects = "direct1,direct2,direct3"
 testchannels = "channel1,channel2,channel3"
 
 # divide the guilds, directs, and channels into lists
-guilds = testguild.split(",")
+directs = testdirects.split(",")
 channels = testchannels.split(",")                          
 
 # Iterate through the guilds to scrape.
-for guild in guilds:
 
     # Iterate through the channels to scrape in the guild.
-    for channel in channels:
+for channel in channels:
 
-        # Retrieve the datetime object for the most recent post in the channel.
-        lastdate = getLastMessageGuild(discordscraper, guild, channel)
+    # Retrieve the datetime object for the most recent post in the channel.
+    lastdate = getLastMessageGuild(discordscraper, guild, channel)
 
-        # Start the scraper for the current channel.
-        start(discordscraper, guild, channel, lastdate)
+    # Start the scraper for the current channel.
+    start(discordscraper, guild, channel, lastdate)
 
 
 
