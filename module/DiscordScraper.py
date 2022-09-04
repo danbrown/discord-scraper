@@ -105,7 +105,7 @@ class DiscordScraper(object):
     This class will contain all of the important functions that will be used that works with both Python 2 and Python 3 interpreters.
     """
 
-    def __init__(self, configfile=None, apiversion=None):
+    def __init__(self, outsideToken=None, outsideGuilds=None, outsideDirects=None, configfile=None, apiversion=None):
         """
         The class constructor function that is not needed for calling any of the static functions.
         :param self: A reference to the class object that will be used to call any non-static functions in this class.
@@ -157,10 +157,14 @@ class DiscordScraper(object):
             # Read the first line of the authorization token file.
             tokenfiledata = tokenfilestream.readline().rstrip()
         
+        tokenToUse = tokenfiledata
+        if outsideToken is not None:
+            tokenToUse = outsideToken
+
         # Create a dictionary to store the HTTP request headers that we will be using for all requests.
         self.headers = {
-            'User-Agent': config.useragent,    # The user-agent string that tells the server which browser, operating system, and rendering engine we're using.
-            'Authorization': tokenfiledata     # The authorization token that authorizes this script to carry out actions with your account, this script only requires this to access the data on the specified guilds and channels for scraping purposes. NEVER UNDER ANY CIRCUMSTANCE SHARE THIS VALUE TO ANYONE YOU DO NOT TRUST!
+            'User-Agent': config.useragent,  # The user-agent string that tells the server which browser, operating system, and rendering engine we're using.
+            'Authorization': tokenToUse      # The authorization token that authorizes this script to carry out actions with your account, this script only requires this to access the data on the specified guilds and channels for scraping purposes. NEVER UNDER ANY CIRCUMSTANCE SHARE THIS VALUE TO ANYONE YOU DO NOT TRUST!
         }
 
         # Create some class variables to store the configuration file data.
