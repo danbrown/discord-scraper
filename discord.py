@@ -107,7 +107,8 @@ def startGuild(scraper, guild, channel, day=None):
         if response is None:
 
             # Set the day to yesterday.
-            day += timedelta(days=-1)
+            # day += timedelta(days=-1)
+            day += timedelta()
 
             # Recursively call this function with the new day.
             startGuild(scraper, guild, channel, day)
@@ -117,6 +118,7 @@ def startGuild(scraper, guild, channel, day=None):
         
         # Get the number of posts.
         posts = data['total_results']
+        print('Found {0} posts.'.format(posts))
         
         # Determine if we have multiple offsets.
         if (posts > 25):

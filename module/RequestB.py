@@ -120,12 +120,14 @@ class DiscordRequest(object):
         else: warn('HTTP {0} from {1}.'.format(response.status, url))
 
         # Handle HTTP 429 Too Many Requests
+        
         if response.status == 429:
             retry_after = loads(response.read()).get('retry_after', None)
+            seconds_to_wait = 2
 
             if retry_after:   
                 # Sleep for 1 extra second as buffer
-                sleep(1 + retry_after)
+                sleep(seconds_to_wait + retry_after)
                 return sendRequest(self, url)
 
         # Return nothing to signify a failed request.
