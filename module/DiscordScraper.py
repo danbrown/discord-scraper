@@ -56,10 +56,10 @@ from time import mktime
 This conditional statement will be used to import the class from the correct file based on the version of the Python interpreter used.
 """
 if version_info.major == 3:  # This means that we're running Python 3.X
-    from .RequestB import DiscordRequest
+    from RequestB import DiscordRequest
 
 elif version_info.major == 2:  # This means that we're running Python 2.X
-    from .RequestA import DiscordRequest
+    from RequestA import DiscordRequest
 
 else:  # This means that we're running some version of Python before 2.X or after 3.X
     stderr.write('[ERROR]: Invalid version of Python detected! This script only supports Python 2 and Python 3.\n')
